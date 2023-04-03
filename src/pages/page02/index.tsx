@@ -1,113 +1,38 @@
 import {Box, Container, Typography} from "@mui/material";
 import styled from '@emotion/styled';
-// import {IoIosArrowForward} from "react-icons/all";
-// import {IoIosArrowBack} from "react-icons/all";
-import BackIcon from './back_arrow_icon.svg'
-import ForwardIcon from './forward_arrow_icon.svg'
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 export default function Page02() {
   return (
     <EmergencyBox>
       <Page02Container>
         <TitleSection>
-          {/*<BackIcon style={{marginRight: '15px', marginTop: '12px', fontSize: '1.7rem', lineHeight: '50px', fontWeight: '800'}}/>*/}
+          <FiChevronLeft style={{marginTop: '12px', fontSize: '1.7rem', lineHeight: '50px', fontWeight: '800'}}/>
           <Typography sx={{fontWeight: '800', fontSize: '1.5rem', lineHeight: '50px', marginLeft: '15px'}}>
             오늘의 영단어
           </Typography>
         </TitleSection>
-        <ListSection>
-          <ListStatusBox><Typography sx={{fontSize: '15px', lineHeight: '25px', ml: '5px'}}>미학습</Typography></ListStatusBox>
-          <ListTitleBox>
-            <Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px'}}>Part 1</Typography>
-            {/*<ForwardIcon style={{marginRight: '1px', marginTop: '6px', fontSize: '1.7rem', lineHeight: '50px', fontWeight: '800', justifyContent:'flex-end'}}/>*/}
-          </ListTitleBox>
-          <ListProgressWrap sx={{mt: '-5px'}}>
-            <ListProgressBox>
-              <ListProgressBar/>
-            </ListProgressBox>
-            <ListProgressString>
-              <Typography sx={{fontSize: '11px', lineHeight: '20px', ml: '5px'}}>학습률: 0 / 121</Typography>
-            </ListProgressString>
-          </ListProgressWrap>
-        </ListSection>
+        {[...Array(7)].map((value, index) => (
+          <ListSection key={index}>
+            <ListStatusBox>
+              <Typography sx={{fontSize: '15px', lineHeight: '25px', ml: '5px'}}>미학습</Typography>
+            </ListStatusBox>
+            <ListTitleBox>
+              <Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px', width: '91%'}}>Part {index + 1}</Typography>
+              <FiChevronRight style={{marginTop: '6px', fontSize: '1.7rem', fontWeight: '800', justifyContent:'flex-end'}}/>
+            </ListTitleBox>
+            <ListProgressWrap sx={{mt: '-5px'}}>
+              <ListProgressBox>
+                <ListProgressBar/>
+              </ListProgressBox>
+              <ListProgressString>
+                <Typography sx={{fontSize: '11px', lineHeight: '20px', ml: '5px'}}>학습률: 0 / 121</Typography>
+              </ListProgressString>
+            </ListProgressWrap>
+          </ListSection>
+        ))}
 
-        <ListSection>
-          <ListStatusBox><Typography sx={{fontSize: '15px', lineHeight: '25px', ml: '5px'}}>미학습</Typography></ListStatusBox>
-          <ListTitleBox><Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px'}}>Part 2</Typography></ListTitleBox>
-          <ListProgressWrap sx={{mt: '-5px'}}>
-            <ListProgressBox>
-              <ListProgressBar/>
-            </ListProgressBox>
-            <ListProgressString>
-              <Typography sx={{fontSize: '11px', lineHeight: '20px', ml: '5px'}}>학습률: 0 / 121</Typography>
-            </ListProgressString>
-          </ListProgressWrap>
-        </ListSection>
 
-        <ListSection>
-          <ListStatusBox><Typography sx={{fontSize: '15px', lineHeight: '25px', ml: '5px'}}>미학습</Typography></ListStatusBox>
-          <ListTitleBox><Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px'}}>Part 3</Typography></ListTitleBox>
-          <ListProgressWrap sx={{mt: '-5px'}}>
-            <ListProgressBox>
-              <ListProgressBar/>
-            </ListProgressBox>
-            <ListProgressString>
-              <Typography sx={{fontSize: '11px', lineHeight: '20px', ml: '5px'}}>학습률: 0 / 121</Typography>
-            </ListProgressString>
-          </ListProgressWrap>
-        </ListSection>
-
-        <ListSection>
-          <ListStatusBox><Typography sx={{fontSize: '15px', lineHeight: '25px', ml: '5px'}}>미학습</Typography></ListStatusBox>
-          <ListTitleBox><Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px'}}>Part 4</Typography></ListTitleBox>
-          <ListProgressWrap sx={{mt: '-5px'}}>
-            <ListProgressBox>
-              <ListProgressBar/>
-            </ListProgressBox>
-            <ListProgressString>
-              <Typography sx={{fontSize: '11px', lineHeight: '20px', ml: '5px'}}>학습률: 0 / 121</Typography>
-            </ListProgressString>
-          </ListProgressWrap>
-        </ListSection>
-
-        <ListSection>
-          <ListStatusBox><Typography sx={{fontSize: '15px', lineHeight: '25px', ml: '5px'}}>미학습</Typography></ListStatusBox>
-          <ListTitleBox><Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px'}}>Part 5</Typography></ListTitleBox>
-          <ListProgressWrap sx={{mt: '-5px'}}>
-            <ListProgressBox>
-              <ListProgressBar/>
-            </ListProgressBox>
-            <ListProgressString>
-              <Typography sx={{fontSize: '11px', lineHeight: '20px', ml: '5px'}}>학습률: 0 / 121</Typography>
-            </ListProgressString>
-          </ListProgressWrap>
-        </ListSection>
-
-        <ListSection>
-          <ListStatusBox><Typography sx={{fontSize: '15px', lineHeight: '25px', ml: '5px'}}>미학습</Typography></ListStatusBox>
-          <ListTitleBox><Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px'}}>Part 6</Typography></ListTitleBox>
-          <ListProgressWrap sx={{mt: '-5px'}}>
-            <ListProgressBox>
-              <ListProgressBar/>
-            </ListProgressBox>
-            <ListProgressString>
-              <Typography sx={{fontSize: '11px', lineHeight: '20px', ml: '5px'}}>학습률: 0 / 121</Typography>
-            </ListProgressString>
-          </ListProgressWrap>
-        </ListSection>
-
-        <ListSection>
-          <ListStatusBox><Typography sx={{fontSize: '15px', lineHeight: '25px', ml: '5px'}}>미학습</Typography></ListStatusBox>
-          <ListTitleBox><Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px'}}>Part 7</Typography></ListTitleBox>
-          <ListProgressWrap sx={{mt: '-5px'}}>
-            <ListProgressBox>
-              <ListProgressBar/>
-            </ListProgressBox>
-            <ListProgressString>
-              <Typography sx={{fontSize: '11px', lineHeight: '20px', ml: '5px'}}>학습률: 0 / 121</Typography>
-            </ListProgressString>
-          </ListProgressWrap>
-        </ListSection>
     </Page02Container>
   </EmergencyBox>
 
