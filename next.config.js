@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages:['tts-react']
+  images: {
+    domains: ["cdn.discordapp.com"],
+  },
+    transpilePackages:['tts-react']
 }
 
-module.exports = nextConfig
+
+
+module.exports = nextConfig;
