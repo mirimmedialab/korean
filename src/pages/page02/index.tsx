@@ -39,20 +39,19 @@ export default function Page02() {
   )
 }
 const EmergencyBox = styled(Box)`
-  max-width: 1024px;
-  min-width: 360px;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  background-color: white;
 `
 
 const Page02Container = styled(Box)`
-  //width: 100%;
-  //max-width: 1024px;
+  max-width: 1024px;
+  min-width: 360px;
   background-color: white;
   color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 auto;
 `;
 
 
@@ -101,10 +100,6 @@ const ListProgressBox = styled(Box)`
   display: flex;
   justify-content: center;
   vertical-align: center;
-
-  @media (min-width: 800px) {
-    width: 85%;
-  }
 `
 
 const ListProgressBar = styled(Box)`
@@ -118,7 +113,4 @@ const ListProgressBar = styled(Box)`
 const ListProgressString = styled(Box)`
   width: 30%;
   height: 100%;
-  @media (min-width: 800px) {
-    width: 15%;
-  }
 `
