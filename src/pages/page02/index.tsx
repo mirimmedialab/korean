@@ -1,17 +1,26 @@
 import {Box, Container, Typography} from "@mui/material";
 import styled from '@emotion/styled';
-
+// import {IoIosArrowForward} from "react-icons/all";
+// import {IoIosArrowBack} from "react-icons/all";
+import BackIcon from './back_arrow_icon.svg'
+import ForwardIcon from './forward_arrow_icon.svg'
 
 export default function Page02() {
   return (
     <EmergencyBox>
       <Page02Container>
         <TitleSection>
-          <Typography sx={{fontWeight: '800', fontSize: '1.5rem', lineHeight: '50px'}}>오늘의 영단어</Typography>
+          {/*<BackIcon style={{marginRight: '15px', marginTop: '12px', fontSize: '1.7rem', lineHeight: '50px', fontWeight: '800'}}/>*/}
+          <Typography sx={{fontWeight: '800', fontSize: '1.5rem', lineHeight: '50px', marginLeft: '15px'}}>
+            오늘의 영단어
+          </Typography>
         </TitleSection>
         <ListSection>
           <ListStatusBox><Typography sx={{fontSize: '15px', lineHeight: '25px', ml: '5px'}}>미학습</Typography></ListStatusBox>
-          <ListTitleBox><Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px'}}>Part 1</Typography></ListTitleBox>
+          <ListTitleBox>
+            <Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px'}}>Part 1</Typography>
+            {/*<ForwardIcon style={{marginRight: '1px', marginTop: '6px', fontSize: '1.7rem', lineHeight: '50px', fontWeight: '800', justifyContent:'flex-end'}}/>*/}
+          </ListTitleBox>
           <ListProgressWrap sx={{mt: '-5px'}}>
             <ListProgressBox>
               <ListProgressBar/>
@@ -24,7 +33,7 @@ export default function Page02() {
 
         <ListSection>
           <ListStatusBox><Typography sx={{fontSize: '15px', lineHeight: '25px', ml: '5px'}}>미학습</Typography></ListStatusBox>
-          <ListTitleBox><Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px'}}>Part 1</Typography></ListTitleBox>
+          <ListTitleBox><Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px'}}>Part 2</Typography></ListTitleBox>
           <ListProgressWrap sx={{mt: '-5px'}}>
             <ListProgressBox>
               <ListProgressBar/>
@@ -37,7 +46,7 @@ export default function Page02() {
 
         <ListSection>
           <ListStatusBox><Typography sx={{fontSize: '15px', lineHeight: '25px', ml: '5px'}}>미학습</Typography></ListStatusBox>
-          <ListTitleBox><Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px'}}>Part 1</Typography></ListTitleBox>
+          <ListTitleBox><Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px'}}>Part 3</Typography></ListTitleBox>
           <ListProgressWrap sx={{mt: '-5px'}}>
             <ListProgressBox>
               <ListProgressBar/>
@@ -50,7 +59,7 @@ export default function Page02() {
 
         <ListSection>
           <ListStatusBox><Typography sx={{fontSize: '15px', lineHeight: '25px', ml: '5px'}}>미학습</Typography></ListStatusBox>
-          <ListTitleBox><Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px'}}>Part 1</Typography></ListTitleBox>
+          <ListTitleBox><Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px'}}>Part 4</Typography></ListTitleBox>
           <ListProgressWrap sx={{mt: '-5px'}}>
             <ListProgressBox>
               <ListProgressBar/>
@@ -63,7 +72,7 @@ export default function Page02() {
 
         <ListSection>
           <ListStatusBox><Typography sx={{fontSize: '15px', lineHeight: '25px', ml: '5px'}}>미학습</Typography></ListStatusBox>
-          <ListTitleBox><Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px'}}>Part 1</Typography></ListTitleBox>
+          <ListTitleBox><Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px'}}>Part 5</Typography></ListTitleBox>
           <ListProgressWrap sx={{mt: '-5px'}}>
             <ListProgressBox>
               <ListProgressBar/>
@@ -76,7 +85,7 @@ export default function Page02() {
 
         <ListSection>
           <ListStatusBox><Typography sx={{fontSize: '15px', lineHeight: '25px', ml: '5px'}}>미학습</Typography></ListStatusBox>
-          <ListTitleBox><Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px'}}>Part 1</Typography></ListTitleBox>
+          <ListTitleBox><Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px'}}>Part 6</Typography></ListTitleBox>
           <ListProgressWrap sx={{mt: '-5px'}}>
             <ListProgressBox>
               <ListProgressBar/>
@@ -89,7 +98,7 @@ export default function Page02() {
 
         <ListSection>
           <ListStatusBox><Typography sx={{fontSize: '15px', lineHeight: '25px', ml: '5px'}}>미학습</Typography></ListStatusBox>
-          <ListTitleBox><Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px'}}>Part 1</Typography></ListTitleBox>
+          <ListTitleBox><Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px'}}>Part 7</Typography></ListTitleBox>
           <ListProgressWrap sx={{mt: '-5px'}}>
             <ListProgressBox>
               <ListProgressBar/>
@@ -104,14 +113,14 @@ export default function Page02() {
 
   )
 }
-export const EmergencyBox = styled(Box)`
+const EmergencyBox = styled(Box)`
   max-width: 1024px;
   min-width: 360px;
   display: flex;
   flex-direction: column;
 `
 
-export const Page02Container = styled(Box)`
+const Page02Container = styled(Box)`
   //width: 100%;
   //max-width: 1024px;
   background-color: white;
@@ -128,6 +137,8 @@ const TitleSection = styled(Box)`
   box-sizing: border-box;
   border-bottom: 2px solid #bebebe;
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
 `
 const ListSection = styled(Box)`
   width: 90%;
@@ -148,6 +159,8 @@ const ListStatusBox = styled(Box)`
 const ListTitleBox = styled(Box)`
   width: 100%;
   height: 50%;
+  display: flex;
+  flex-direction: row;
 `
 
 const ListProgressWrap = styled(Box)`
