@@ -12,13 +12,32 @@ export default function Page02() {
             오늘의 영단어
           </Typography>
         </TitleSection>
-        {[...Array(7)].map((value, index) => (
+
+        <ListSection>
+          <ListStatusBox>
+            <Typography sx={{fontSize: '15px', lineHeight: '25px', ml: '5px'}}>학습완료</Typography>
+          </ListStatusBox>
+          <ListTitleBox>
+            <Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px', width: '91%'}}>Part 1</Typography>
+            <FiChevronRight style={{marginTop: '6px', fontSize: '1.7rem', fontWeight: '800', justifyContent:'flex-end'}}/>
+          </ListTitleBox>
+          <ListProgressWrap sx={{mt: '-5px'}}>
+            <ListProgressBox>
+              <ListProgressSuccessBar/>
+            </ListProgressBox>
+            <ListProgressString>
+              <Typography sx={{fontSize: '11px', lineHeight: '20px', ml: '5px'}}>학습률: 121 / 121</Typography>
+            </ListProgressString>
+          </ListProgressWrap>
+        </ListSection>
+
+        {[...Array(6)].map((value, index) => (
           <ListSection key={index}>
             <ListStatusBox>
               <Typography sx={{fontSize: '15px', lineHeight: '25px', ml: '5px'}}>미학습</Typography>
             </ListStatusBox>
             <ListTitleBox>
-              <Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px', width: '91%'}}>Part {index + 1}</Typography>
+              <Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px', width: '91%'}}>Part {index + 1 + 1}</Typography>
               <FiChevronRight style={{marginTop: '6px', fontSize: '1.7rem', fontWeight: '800', justifyContent:'flex-end'}}/>
             </ListTitleBox>
             <ListProgressWrap sx={{mt: '-5px'}}>
@@ -100,6 +119,15 @@ const ListProgressBox = styled(Box)`
   display: flex;
   justify-content: center;
   vertical-align: center;
+`
+
+const ListProgressSuccessBar = styled(Box)`
+  width: 98%;
+  height: 90%;
+  box-sizing: border-box;
+  border: 2px solid pink;
+  border-radius: 5px;
+  background-color: pink;
 `
 
 const ListProgressBar = styled(Box)`
