@@ -2066,6 +2066,11 @@ react-dom@18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
+react-icons@^4.8.0:
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.8.0.tgz#621e900caa23b912f737e41be57f27f6b2bff445"
+  integrity sha512-N6+kOLcihDiAnj5Czu637waJqSnwlMNROzVZMhfX68V/9bu9qHaMIJC4UdozWoOk57gahFCNHwVvWzm0MTzRjg==
+
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -2378,6 +2383,11 @@ tsutils@^3.21.0:
   integrity sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==
   dependencies:
     tslib "^1.8.1"
+
+tts-react@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/tts-react/-/tts-react-1.2.0.tgz#cd73bcaecc54845a7445c0afc72d77fcd511775d"
+  integrity sha512-+uOyN12XBsEdm+ri84hcgC0B2REqtaQSV3KAVLoIBIodCJ6ypuGprnpcx7xUBSM3KiZ4IAqBxK8LfHj+DvgS2w==
 
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"

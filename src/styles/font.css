@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'Jua';
+    src: url('../../public/font/Jua-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Jua';
+}
