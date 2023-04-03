@@ -11,6 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@meinefinsternis/react-horizontal-date-picker": "^1.0.1",
     "@mui/material": "^5.11.15",
     "@types/node": "18.15.11",
     "@types/react": "18.0.32",
@@ -22,6 +23,7 @@
     "react": "18.2.0",
     "react-calendar": "^4.1.0",
     "react-dom": "18.2.0",
+    "react-horizontal-datepicker": "^2.0.3",
     "react-icons": "^4.8.0",
     "typescript": "5.0.3"
   }
