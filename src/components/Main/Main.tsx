@@ -26,7 +26,7 @@ export function Main() {
     <MainContainer>
       <Box>
         <Header>
-          <Logo>Voca voca</Logo>
+          <Logo>나만의 영어 단어장</Logo>
           <Setting>⋯</Setting>
         </Header>
         <FriendList>
@@ -53,7 +53,9 @@ export function Main() {
 const MainContainer = styled.div`
   background-color: #ffff;
   height: 100vh;
+  max-width: 1024px;
   margin: 0 auto;
+  padding: 10px;
 `;
 const Box = styled.div`
   padding: 15px;
