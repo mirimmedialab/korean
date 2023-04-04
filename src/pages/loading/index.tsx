@@ -1,5 +1,5 @@
-const Loading = () => {
-  return <>로딩페이지 입니다.</>;
-};
+import { Loading } from "../../components/Loading/index";
 
-export default Loading;
+export default function LearningPage() {
+  return <Loading />;
+}
