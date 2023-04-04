@@ -24,6 +24,7 @@
     "react-calendar": "^4.1.0",
     "react-dom": "18.2.0",
     "react-horizontal-datepicker": "^2.0.3",
+    "react-horizontal-strip-datepicker": "^3.0.2",
     "react-icons": "^4.8.0",
     "tts-react": "^1.2.0",
     "typescript": "5.0.3"
