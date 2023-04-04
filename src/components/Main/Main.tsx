@@ -5,6 +5,7 @@ import { enUS } from 'date-fns/locale';
 import Image from 'next/image';
 import Sponge from 'public/sponge.webp';
 import Card from '@/components/Main/Card';
+import {Loading} from "@/components/Loading";
 
 export function Main() {
   const [date, setDate] = React.useState<{
@@ -16,11 +17,18 @@ export function Main() {
     endValue: null,
     rangeDates: [],
   });
+  const [open , setOpen] = React.useState(true)
 
   const handleChange = (d: DatepickerEvent) => {
     const [startValue, endValue, rangeDates] = d;
     setDate((prev) => ({ ...prev, endValue, startValue, rangeDates }));
   };
+
+  React.useEffect(()=>{
+    setTimeout(()=>{
+      setOpen(false)
+    },2000)
+  },[])
 
   return (
     <MainContainer>
@@ -46,11 +54,18 @@ export function Main() {
         <Datepicker onChange={handleChange} locale={enUS} startValue={null} endValue={null} />
         <Card />
       </Box>
+      {open && (
+          <SplashWapper>
+            <Loading />
+          </SplashWapper>
+      )}
+
     </MainContainer>
   );
 }
 
 const MainContainer = styled.div`
+  position: relative;
   background-color: #ffff;
   height: 100vh;
   max-width: 1024px;
@@ -123,3 +138,11 @@ const Button = styled.button`
   outline: none;
   margin-top: 15px;
 `;
+
+const SplashWapper = styled.div`
+  position: fixed;
+  width: 100%;
+  z-index: 10000;
+  top:0;
+  left: 0
+`

@@ -5,6 +5,8 @@ import { BiCaretLeft, BiCaretRight } from "react-icons/bi";
 import { BsHeadphones } from "react-icons/bs";
 import { Timer } from "@/components";
 import Image from "next/image";
+import {IoIosArrowBack} from "react-icons/io";
+import {useRouter} from "next/router";
 
 export default function Test() {
   const [show, setShow] = useState<boolean>(false);
@@ -33,14 +35,20 @@ export default function Test() {
     );
     setShow(false);
   }
+
+  const router = useRouter()
+
+  const handleBack = () => {
+    router.replace('/voca-list')
+  }
+
   return (
     <Container>
       <Box>
         <Title>
-          <FiChevronLeft style={{ width: "35px", height: "35px" }} />
-          <h1>Part 1</h1>
+          <IoIosArrowBack  style={{fontSize:'24px' , display:'flex' , alignItems:'center'}} onClick={handleBack}  />
+          <LearningListHeaderTypo>Part 1</LearningListHeaderTypo>
         </Title>
-        <hr />
         <Section>
           <Timer />
           <ImgWrapper>
@@ -93,6 +101,13 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+const LearningListHeaderTypo = styled.div`
+  font-size: 20px;
+  height: 24px;
+  margin-left: 4px;
+`
+
 const Box = styled.div`
   max-width: 1024px;
   width: 100%;
@@ -105,13 +120,18 @@ const Section = styled.div`
 `;
 
 const Title = styled.div`
-  height: 46px;
-  line-height: 46px;
+  //height: 46px;
+  //line-height: 46px;
+  //display: flex;
+  //align-items: center;
+  //h1 {
+  //  font-size: 20px;
+  //}
+
   display: flex;
   align-items: center;
-  h1 {
-    font-size: 20px;
-  }
+  padding: 12px 4px;
+  border-bottom: 1px solid #cccccc;
 `;
 const ImgWrapper = styled.div`
   position: relative;
