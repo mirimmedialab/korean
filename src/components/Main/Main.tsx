@@ -73,6 +73,7 @@ const MainContainer = styled.div`
   padding: 10px;
 `;
 const Box = styled.div`
+  /* width: 360px; */
   padding: 15px;
 `;
 const Header = styled.div`
