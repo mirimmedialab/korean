@@ -1,5 +1,5 @@
-import {LearningList} from "@/components/Learning";
+import { LearningList } from "@/components/Learning";
 
-export default function  LearningPage(){
-    return <LearningList />
- }
+export default function LearningPage() {
+  return <LearningList />;
+}
