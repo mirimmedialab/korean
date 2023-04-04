@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { FiChevronLeft } from "react-icons/fi";
 import { BiCaretLeft, BiCaretRight } from "react-icons/bi";
 import { BsHeadphones } from "react-icons/bs";
-import { Timer } from "@/components";
+// import { Timer } from "@/components";
+import { Timer } from "../Timer";
 import Image from "next/image";
 import { useTts } from "tts-react";
 import type { TTSHookProps } from "tts-react";
@@ -15,10 +16,16 @@ export default function Test() {
   const [show, setShow] = useState<boolean>(false);
   const [idx, setIdx] = useState<number>(0);
   const [finalCount, setFinalCount] = useState<string>();
+  const [answerCount, setAnswerCount] = useState<number>(0);
+  const [isChecked, setIsChecked] = useState(false);
 
   function showMeanHandler() {
     setShow(!show);
   }
+
+  // function handleCheckboxChange() {
+  //   setIsChecked(!isChecked);
+  // }
 
   const CustomTTSComponent = ({ children }: TTSHookProps) => {
     const selectedVoice = speechSynthesis
@@ -44,6 +51,7 @@ export default function Test() {
   function indexLeftHandler() {
     setIdx((prevIdx) => (prevIdx - 1 < 0 ? 0 : prevIdx - 1));
     setShow(false);
+    setIsChecked(false);
   }
 
   function indexRightHandler() {
@@ -54,13 +62,22 @@ export default function Test() {
     );
     setShow(false);
     if (idx === learningData.length - 1) {
-      alert(`테스트가 끝났습니다. ${finalCount}`);
+      alert(`테스트가 끝났습니다.
+      소요시간 : ${finalCount}
+      정답갯수 : ${answerCount}`);
       window.location.href = "/voca-list";
     }
+    setIsChecked(false);
   }
   function handleBack() {
     router.push(`/voca-list`);
   }
+
+  function answerCheck() {
+    setAnswerCount(answerCount + 1);
+    setIsChecked(!isChecked);
+  }
+  console.log(answerCount);
 
   return (
     <Container>
@@ -87,11 +104,20 @@ export default function Test() {
               src={`https://cdn.discordapp.com/attachments/1092315426643529748/1092362861810044979/note.png`}
             ></Image>
             <Voca>
-              <h1>{learningData[idx].word}</h1>
-              <Mean style={show ? { display: "block" } : { display: "none" }}>
-                {learningData[idx].mean}
+              {/* <h1>{learningData[idx].localStorage.}</h1> */}
+              <Mean style={show ? { display: "flex" } : { display: "none" }}>
+                {/* {learningData[idx].mean} */}
+                <br />
               </Mean>
-            </Voca>
+            </Voca>{" "}
+            <CheckBox style={show ? { display: "flex" } : { display: "none" }}>
+              정답체크
+              <input
+                type="checkbox"
+                checked={isChecked}
+                onChange={answerCheck}
+              />
+            </CheckBox>
           </ImgWrapper>
           <Controller>
             <Wrapper>
@@ -100,7 +126,7 @@ export default function Test() {
               </Icon>
               <Icon>
                 <CustomTTSComponent>
-                  <h1>{learningData[idx].word}</h1>
+                  {/* <h1>{learningData[idx].word}</h1> */}
                 </CustomTTSComponent>
               </Icon>
               <Icon>
@@ -143,14 +169,6 @@ const Section = styled.div`
 `;
 
 const Title = styled.div`
-  //height: 46px;
-  //line-height: 46px;
-  //display: flex;
-  //align-items: center;
-  //h1 {
-  //  font-size: 20px;
-  //}
-
   display: flex;
   align-items: center;
   padding: 12px 4px;
@@ -173,12 +191,12 @@ const Voca = styled.div`
   /* background-size: cover; */
 
   /* width: 100%; */
-  height: 300px;
+  height: 270px;
 
   margin: 20px 0;
 
   h1 {
-    font-size: 30px;
+    font-size: 28px;
   }
 
   p {
@@ -212,4 +230,18 @@ const ShowMean = styled.div`
   cursor: pointer;
 `;
 
-const Mean = styled.div``;
+const Mean = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+`;
+const Button = styled.button``;
+const CheckBox = styled.div`
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+`;
