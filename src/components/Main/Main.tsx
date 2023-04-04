@@ -1,10 +1,7 @@
 import styled from '@emotion/styled';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Datepicker, DatepickerEvent } from '@meinefinsternis/react-horizontal-date-picker';
 import { enUS } from 'date-fns/locale';
-import ReactHorizontalDatePicker from 'react-horizontal-strip-datepicker';
-import DatePicker from 'react-horizontal-datepicker';
-import 'react-horizontal-strip-datepicker/dist/ReactHorizontalDatePicker.css';
 import Image from 'next/image';
 import LogoMirim from 'public/logo.png';
 import Card from '@/components/Main/Card';
