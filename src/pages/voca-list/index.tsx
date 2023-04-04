@@ -2,83 +2,85 @@ import {Box, Button, Container, Typography} from "@mui/material";
 import styled from '@emotion/styled';
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import {useState} from "react";
+import { useRouter } from 'next/navigation';
 
 export default function Page02() {
+  const [showModal, setShowModal] = useState(false);
+  const router = useRouter();
 
-  const handleStep = async () => {
-    setStep(2);
+  const handleTest = () => {
+    router.push('/test');
+  };
+  const handleLearning = () => {
+    router.push('/learning');
   };
 
 
-  const [step, setStep] = useState<1 | 2>(1);
+  return (
+    <>
+      <EmergencyBox>
+        <Page02Container>
+          <TitleSection>
+            <FiChevronLeft style={{marginTop: '12px', fontSize: '1.7rem', lineHeight: '50px', fontWeight: '800'}}/>
+            <Typography sx={{fontWeight: '800', fontSize: '1.5rem', lineHeight: '50px', marginLeft: '15px'}}>
+              오늘의 영단어
+            </Typography>
+          </TitleSection>
 
+          <ListSection onClick={() => setShowModal(true)}>
+            <ListStatusBox>
+              <Typography sx={{fontSize: '15px', lineHeight: '25px', ml: '5px'}}>학습완료</Typography>
+            </ListStatusBox>
+            <ListTitleBox>
+              <Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px', width: '91%'}}>Part 1</Typography>
+              <FiChevronRight style={{marginTop: '6px', fontSize: '1.7rem', fontWeight: '800', justifyContent:'flex-end'}}/>
+            </ListTitleBox>
+            <ListProgressWrap sx={{mt: '-5px'}}>
+              <ListProgressBox>
+                <ListProgressSuccessBar/>
+              </ListProgressBox>
+              <ListProgressString>
+                <Typography sx={{fontSize: '11px', lineHeight: '20px', ml: '5px'}}>학습률: 121 / 121</Typography>
+              </ListProgressString>
+            </ListProgressWrap>
+          </ListSection>
 
-  const renderComponent = () => {
-    switch (step) {
-      case 1 :
-        return (
+          {[...Array(6)].map((value, index) => (
+            <ListSection key={index}>
+              <ListStatusBox>
+                <Typography sx={{fontSize: '15px', lineHeight: '25px', ml: '5px'}}>미학습</Typography>
+              </ListStatusBox>
+              <ListTitleBox>
+                <Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px', width: '91%'}}>Part {index + 1 + 1}</Typography>
+                <FiChevronRight style={{marginTop: '6px', fontSize: '1.7rem', fontWeight: '800', justifyContent:'flex-end'}}/>
+              </ListTitleBox>
+              <ListProgressWrap sx={{mt: '-5px'}}>
+                <ListProgressBox>
+                  <ListProgressBar/>
+                </ListProgressBox>
+                <ListProgressString>
+                  <Typography sx={{fontSize: '11px', lineHeight: '20px', ml: '5px'}}>학습률: 0 / 121</Typography>
+                </ListProgressString>
+              </ListProgressWrap>
+            </ListSection>
+          ))}
+        </Page02Container>
+      </EmergencyBox>
 
-          <EmergencyBox>
-            <Page02Container>
-              <TitleSection>
-                <FiChevronLeft style={{marginTop: '12px', fontSize: '1.7rem', lineHeight: '50px', fontWeight: '800'}}/>
-                <Typography sx={{fontWeight: '800', fontSize: '1.5rem', lineHeight: '50px', marginLeft: '15px'}}>
-                  오늘의 영단어
-                </Typography>
-              </TitleSection>
-
-              <ListSection onClick={() => setStep(2)}>
-                <ListStatusBox>
-                  <Typography sx={{fontSize: '15px', lineHeight: '25px', ml: '5px'}}>학습완료</Typography>
-                </ListStatusBox>
-                <ListTitleBox>
-                  <Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px', width: '91%'}}>Part 1</Typography>
-                  <FiChevronRight style={{marginTop: '6px', fontSize: '1.7rem', fontWeight: '800', justifyContent:'flex-end'}}/>
-                </ListTitleBox>
-                <ListProgressWrap sx={{mt: '-5px'}}>
-                  <ListProgressBox>
-                    <ListProgressSuccessBar/>
-                  </ListProgressBox>
-                  <ListProgressString>
-                    <Typography sx={{fontSize: '11px', lineHeight: '20px', ml: '5px'}}>학습률: 121 / 121</Typography>
-                  </ListProgressString>
-                </ListProgressWrap>
-              </ListSection>
-
-              {[...Array(6)].map((value, index) => (
-                <ListSection key={index}>
-                  <ListStatusBox>
-                    <Typography sx={{fontSize: '15px', lineHeight: '25px', ml: '5px'}}>미학습</Typography>
-                  </ListStatusBox>
-                  <ListTitleBox>
-                    <Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px', width: '91%'}}>Part {index + 1 + 1}</Typography>
-                    <FiChevronRight style={{marginTop: '6px', fontSize: '1.7rem', fontWeight: '800', justifyContent:'flex-end'}}/>
-                  </ListTitleBox>
-                  <ListProgressWrap sx={{mt: '-5px'}}>
-                    <ListProgressBox>
-                      <ListProgressBar/>
-                    </ListProgressBox>
-                    <ListProgressString>
-                      <Typography sx={{fontSize: '11px', lineHeight: '20px', ml: '5px'}}>학습률: 0 / 121</Typography>
-                    </ListProgressString>
-                  </ListProgressWrap>
-                </ListSection>
-              ))}
-
-
-
-
-            </Page02Container>
-          </EmergencyBox>
-
-        )
-      case 2 : 
-        return (
-          <div onClick={() => setStep(1)}>asdf</div>
-        )
-    }
-  }
-  return <>{renderComponent()}</>;
+      {showModal &&
+        <Modalchang>
+          <Box className="modal-content" >
+            
+            <Typography>선택해주세요</Typography>
+            <HiButton variant="contained" color="warning" onClick={() => handleLearning()}>단어장</HiButton>
+            <HiButton variant="contained" color="primary" onClick={() => handleTest()}>테스트</HiButton>
+            <HiButton variant="contained" color="error" onClick={() => setShowModal(false)}>닫기</HiButton>
+              
+          </Box>
+        </Modalchang>
+      }
+    </>
+  )
 }
 const EmergencyBox = styled(Box)`
   width: 100%;
@@ -166,3 +168,42 @@ const ListProgressString = styled(Box)`
   width: 30%;
   height: 100%;
 `
+
+const Modalchang = styled(Box)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal-content {
+    width: 250px;
+    height: 200px;
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+`
+
+const HiButton = styled(Button)`
+  width: 100%;
+  
+  &:first-of-type {
+    margin-top: 30px;
+    margin-bottom: 5px;
+  }
+
+  &:last-of-type {
+    margin-top: 30px;
+  }
+`
+
