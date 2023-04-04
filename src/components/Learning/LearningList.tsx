@@ -8,12 +8,12 @@ export default function  LearningList(){
     const router = useRouter()
 
     const handleBack = () => {
-        router.back();
+        router.replace('/voca-list')
     }
     return (
         <LearningListContainer>
             <LearningListHeader>
-                <IoIosArrowBack  style={{fontSize:'24px' , display:'flex' , alignItems:'center'}} onClick={handleBack}  />
+                <IoIosArrowBack  style={{fontSize:'24px' , display:'flex' , alignItems:'center', cursor:'pointer'}} onClick={handleBack}  />
                 <LearningListHeaderTypo>Part 1</LearningListHeaderTypo>
             </LearningListHeader>
             <LearningListBody>
@@ -29,8 +29,6 @@ const LearningListContainer = styled.div`
   width: 100%;
   max-width: 1024px;
   margin:auto;
-  border-left: 1px solid white;
-  border-right: 1px solid white;
 `
 const LearningListHeader = styled.header`
   display: flex;
@@ -42,6 +40,8 @@ const LearningListHeaderTypo = styled.div`
   font-size: 20px;
   height: 24px;
   margin-left: 4px;
+  display: flex;
+  align-items: center;
 `
 
 const LearningListBody = styled.div``

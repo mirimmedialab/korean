@@ -36,7 +36,6 @@ export function LearningCard({seq,isLearning,isFavorite,word,mean2,mean,audio}:P
 
     const CustomTTSComponent = ({children}: TTSHookProps) =>{
         const selectedVoice = speechSynthesis.getVoices().filter(r=>r.voiceURI === 'Google US English')
-        console.log(speechSynthesis.getVoices())
         const {ttsChildren,state,play,stop,pause} = useTts({
             children,
             voice: selectedVoice[0]
@@ -47,7 +46,7 @@ export function LearningCard({seq,isLearning,isFavorite,word,mean2,mean,audio}:P
             play();
         }
 
-        return<><HiSpeakerWave onClick={handlePlay} /></>
+        return<><HiSpeakerWave style={{cursor:'pointer'}} onClick={handlePlay} /></>
     }
 
     return (
@@ -65,29 +64,50 @@ export function LearningCard({seq,isLearning,isFavorite,word,mean2,mean,audio}:P
                     <CustomTTSComponent><p>{word}</p></CustomTTSComponent>
                 </LearningCardWrapper>
             </LearningCardSection>
-            {open && (
-                <LearningCardMeanSection>
+            {/*{open && (*/}
+                <LearningCardMeanSection className={open ? 'active' : 'close'}>
                     <LearningCardMeanWrapper>
                         <LearningCardMeanContent>{mean}</LearningCardMeanContent>
                     </LearningCardMeanWrapper>
-                    <LearningCardMeanWrapper>
-                        <LearningCardMeanContent>{mean2}</LearningCardMeanContent>
-                    </LearningCardMeanWrapper>
+                    {/*<LearningCardMeanWrapper>*/}
+                    {/*    <LearningCardMeanContent>{mean2}</LearningCardMeanContent>*/}
+                    {/*</LearningCardMeanWrapper>*/}
                 </LearningCardMeanSection>
-            )}
+             {/*)}*/}
         </LearningCardContainer>
     )
 }
 
 const LearningCardContainer = styled.div`
   color:black;
-  margin: 12px 0;
-`
-const LearningCardSection = styled.section`
-  padding:8px;
-  border-radius: 8px;
+  margin: 8px 0;
   box-shadow: rgba(0, 0, 0, 0.2) 10px 10px 10px 0px;
+
+  border-radius: 16px;
+  
+  .active{
+    //transform: translate(0,0%);
+    height: 78px;
+    overflow: hidden;
+    transition: all 0.2s ease-in-out;
+  }
+  .close{
+    height: 0;
+    overflow: hidden;
+    //transform: translate(0,-100%);
+    transition: all 0.2s ease-in-out;
+    
+  }
+
+`
+
+const LearningCardSection = styled.section`
+  position: relative;
+  padding:8px;
+  border-radius: 16px;
   background-color: white;
+  cursor: pointer;
+  z-index: 20;
 `
 const LearningCardWrapper = styled.div`
   display: flex;
@@ -105,12 +125,15 @@ const LearningCardContent = styled.div`
 
 const LearningCardMeanSection = styled.section`
   //margin-top: 12px;
+  position: relative;
   display: flex;
   justify-content: space-between;
   height: 100%;
+  border-radius: 0 0 16px 16px;
+  z-index: 10;
 `
 const LearningCardMeanWrapper = styled.div`
-  width: 50%;
+  width: 100%;
 ;
 `
 const LearningCardMeanContent = styled.div`
@@ -118,6 +141,7 @@ const LearningCardMeanContent = styled.div`
   //border-radius: 0 0 8px 8px;
   color:white;
   background-color:hotpink;
+  border-radius: 0 0 16px 16px;
   box-shadow: rgba(0, 0, 0, 0.2) 10px 10px 10px 0px;
   padding: 24px 8px;
   display: flex;

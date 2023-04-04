@@ -9,6 +9,7 @@ import Image from 'next/image';
 import LogoMirim from 'public/logo.png';
 import Card from '@/components/Main/Card';
 import dayjs from 'dayjs';
+import { Loading } from '@/components/Loading';
 
 export function Main() {
   const [date, setDate] = React.useState<{
@@ -22,15 +23,18 @@ export function Main() {
     rangeDates: [],
     startDate: dayjs().toDate(),
   });
+  const [open, setOpen] = React.useState(true);
 
   const handleChange = (d: DatepickerEvent) => {
     const [startValue, endValue, rangeDates] = d;
     setDate((prev) => ({ ...prev, endValue, startValue, rangeDates }));
   };
 
-  const onSelectedDay = (d: any) => {
-    console.log(d);
-  };
+  React.useEffect(() => {
+    setTimeout(() => {
+      setOpen(false);
+    }, 2000);
+  }, []);
 
   return (
     <MainContainer>
@@ -52,11 +56,17 @@ export function Main() {
         <Datepicker onChange={handleChange} locale={enUS} startValue={dayjs().toDate()} endValue={null} />
         <Card />
       </Box>
+      {open && (
+        <SplashWapper>
+          <Loading />
+        </SplashWapper>
+      )}
     </MainContainer>
   );
 }
 
 const MainContainer = styled.div`
+  position: relative;
   background-color: #ffff;
   height: 100vh;
   max-width: 1024px;
@@ -64,6 +74,7 @@ const MainContainer = styled.div`
   padding: 10px;
 `;
 const Box = styled.div`
+  /* width: 360px; */
   padding: 15px;
 `;
 const Header = styled.div`
@@ -106,4 +117,12 @@ const Button = styled.button`
   border: none;
   outline: none;
   margin-top: 15px;
+`;
+
+const SplashWapper = styled.div`
+  position: fixed;
+  width: 100%;
+  z-index: 10000;
+  top: 0;
+  left: 0;
 `;
