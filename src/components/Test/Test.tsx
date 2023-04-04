@@ -67,7 +67,7 @@ export default function Test() {
       <Box>
         <Title>
           <IoIosArrowBack
-            style={{ fontSize: "24px", display: "flex", alignItems: "center" }}
+            style={{ fontSize: "24px", display: "flex", alignItems: "center", cursor:'pointer' }}
             onClick={handleBack}
           />
           <LearningListHeaderTypo>Part 1</LearningListHeaderTypo>
@@ -96,7 +96,7 @@ export default function Test() {
           <Controller>
             <Wrapper>
               <Icon>
-                <BiCaretLeft onClick={indexLeftHandler} />
+                <BiCaretLeft style={{cursor:'pointer'}} onClick={indexLeftHandler} />
               </Icon>
               <Icon>
                 <CustomTTSComponent>
@@ -104,7 +104,7 @@ export default function Test() {
                 </CustomTTSComponent>
               </Icon>
               <Icon>
-                <BiCaretRight onClick={indexRightHandler} />
+                <BiCaretRight style={{cursor:'pointer'}} onClick={indexRightHandler} />
               </Icon>
             </Wrapper>
 
@@ -120,6 +120,8 @@ const LearningListHeaderTypo = styled.div`
   font-size: 20px;
   height: 24px;
   margin-left: 4px;
+  display: flex;
+  align-items: center;
 `;
 const Container = styled.div`
   background-color: white;

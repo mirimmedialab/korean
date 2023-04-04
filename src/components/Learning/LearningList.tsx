@@ -13,7 +13,7 @@ export default function  LearningList(){
     return (
         <LearningListContainer>
             <LearningListHeader>
-                <IoIosArrowBack  style={{fontSize:'24px' , display:'flex' , alignItems:'center'}} onClick={handleBack}  />
+                <IoIosArrowBack  style={{fontSize:'24px' , display:'flex' , alignItems:'center', cursor:'pointer'}} onClick={handleBack}  />
                 <LearningListHeaderTypo>Part 1</LearningListHeaderTypo>
             </LearningListHeader>
             <LearningListBody>
@@ -40,6 +40,8 @@ const LearningListHeaderTypo = styled.div`
   font-size: 20px;
   height: 24px;
   margin-left: 4px;
+  display: flex;
+  align-items: center;
 `
 
 const LearningListBody = styled.div``

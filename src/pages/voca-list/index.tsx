@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import {useState} from "react";
 import { useRouter } from 'next/navigation';
+import {IoIosArrowBack} from 'react-icons/io'
 
 export default function Page02() {
   const [showModal, setShowModal] = useState(false);
@@ -14,18 +15,25 @@ export default function Page02() {
   const handleLearning = () => {
     router.push('/learning');
   };
-
+  const handleBack = () => {
+    router.replace('/')
+  }
 
   return (
     <>
       <EmergencyBox>
+
+        <LearningListHeader>
+          <IoIosArrowBack  style={{fontSize:'24px' , display:'flex' , alignItems:'center', cursor:'pointer'}} onClick={handleBack}  />
+          {/*<FiChevronLeft style={{marginTop: '12px', fontSize: '1.7rem', lineHeight: '50px', fontWeight: '800'}}/>*/}
+          {/*<Typography sx={{fontWeight: '800', fontSize: '1.5rem', lineHeight: '50px', marginLeft: '15px'}}>*/}
+          {/*  오늘의 영단어*/}
+          {/*</Typography>*/}
+          <LearningListHeaderTypo>
+            영어 단어 리스트
+          </LearningListHeaderTypo>
+        </LearningListHeader>
         <Page02Container>
-          <TitleSection>
-            <FiChevronLeft style={{marginTop: '12px', fontSize: '1.7rem', lineHeight: '50px', fontWeight: '800'}}/>
-            <Typography sx={{fontWeight: '800', fontSize: '1.5rem', lineHeight: '50px', marginLeft: '15px'}}>
-              오늘의 영단어
-            </Typography>
-          </TitleSection>
 
           <ListSection onClick={() => setShowModal(true)}>
             <ListStatusBox>
@@ -45,7 +53,7 @@ export default function Page02() {
             </ListProgressWrap>
           </ListSection>
 
-          {[...Array(6)].map((value, index) => (
+          {[...Array(0)].map((value, index) => (
             <ListSection key={index}>
               <ListStatusBox>
                 <Typography sx={{fontSize: '15px', lineHeight: '25px', ml: '5px'}}>미학습</Typography>
@@ -85,7 +93,8 @@ export default function Page02() {
 const EmergencyBox = styled(Box)`
   width: 100%;
   background-color: white;
-  
+  max-width: 1024px;
+  margin: 0 auto;
 `
 
 const Page02Container = styled(Box)`
@@ -97,6 +106,7 @@ const Page02Container = styled(Box)`
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
+  margin-top:8px;
 `;
 
 
@@ -109,6 +119,14 @@ const TitleSection = styled(Box)`
   display: flex;
   flex-direction: row;
 `
+
+const LearningListHeader = styled.header`
+  display: flex;
+  align-items: center;
+  padding: 12px 4px;
+  border-bottom: 1px solid #cccccc;
+`
+
 const ListSection = styled(Box)`
   width: 90%;
   height: 100px;
@@ -118,7 +136,7 @@ const ListSection = styled(Box)`
   border-radius: 10px;
   box-shadow: 5px 5px 5px 5px #d6d6d6;
   padding: 3px;
-  
+  cursor: pointer;
 `
 const ListStatusBox = styled(Box)`
   width: 100%;
@@ -205,5 +223,14 @@ const HiButton = styled(Button)`
   &:last-of-type {
     margin-top: 30px;
   }
+`
+
+
+const LearningListHeaderTypo = styled.div`
+  font-size: 20px;
+  height: 24px;
+  margin-left: 4px;
+  display: flex;
+  align-items: center;
 `
 

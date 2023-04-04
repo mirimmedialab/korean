@@ -46,7 +46,7 @@ export function LearningCard({seq,isLearning,isFavorite,word,mean2,mean,audio}:P
             play();
         }
 
-        return<><HiSpeakerWave onClick={handlePlay} /></>
+        return<><HiSpeakerWave style={{cursor:'pointer'}} onClick={handlePlay} /></>
     }
 
     return (
@@ -106,6 +106,7 @@ const LearningCardSection = styled.section`
   padding:8px;
   border-radius: 16px;
   background-color: white;
+  cursor: pointer;
   z-index: 20;
 `
 const LearningCardWrapper = styled.div`
