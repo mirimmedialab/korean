@@ -9,6 +9,7 @@ import { useTts } from "tts-react";
 import type { TTSHookProps } from "tts-react";
 import { learningData } from "./learningData";
 import router from "next/router";
+import { IoIosArrowBack } from "react-icons/io";
 
 export default function Test() {
   const [show, setShow] = useState<boolean>(false);
@@ -57,18 +58,20 @@ export default function Test() {
       window.location.href = "/voca-list";
     }
   }
+  function handleBack() {
+    router.push(`/voca-list`);
+  }
 
   return (
     <Container>
       <Box>
         <Title>
-          <FiChevronLeft
-            style={{ width: "35px", height: "35px" }}
-            onClick={() => router.push(`/voca-list`)}
+          <IoIosArrowBack
+            style={{ fontSize: "24px", display: "flex", alignItems: "center" }}
+            onClick={handleBack}
           />
-          <h1>Part 1</h1>
+          <LearningListHeaderTypo>Part 1</LearningListHeaderTypo>
         </Title>
-        <hr />
         <Section>
           <Timer setFinalCount={setFinalCount} />
           <ImgWrapper>
@@ -113,6 +116,11 @@ export default function Test() {
   );
 }
 
+const LearningListHeaderTypo = styled.div`
+  font-size: 20px;
+  height: 24px;
+  margin-left: 4px;
+`;
 const Container = styled.div`
   background-color: white;
   padding-bottom: 20px;
@@ -135,13 +143,18 @@ const Section = styled.div`
 `;
 
 const Title = styled.div`
-  height: 46px;
-  line-height: 46px;
+  //height: 46px;
+  //line-height: 46px;
+  //display: flex;
+  //align-items: center;
+  //h1 {
+  //  font-size: 20px;
+  //}
+
   display: flex;
   align-items: center;
-  h1 {
-    font-size: 20px;
-  }
+  padding: 12px 4px;
+  border-bottom: 1px solid #cccccc;
 `;
 const ImgWrapper = styled.div`
   position: relative;
