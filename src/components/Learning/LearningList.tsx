@@ -8,7 +8,7 @@ export default function  LearningList(){
     const router = useRouter()
 
     const handleBack = () => {
-        router.back();
+        router.replace('/voca-list')
     }
     return (
         <LearningListContainer>
@@ -29,8 +29,6 @@ const LearningListContainer = styled.div`
   width: 100%;
   max-width: 1024px;
   margin:auto;
-  border-left: 1px solid white;
-  border-right: 1px solid white;
 `
 const LearningListHeader = styled.header`
   display: flex;
