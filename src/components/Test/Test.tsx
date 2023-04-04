@@ -1,20 +1,44 @@
-import { Test } from "@/components/Test";
+import styled from "@emotion/styled";
+import { useEffect, useState } from "react";
+import { FiChevronLeft } from "react-icons/fi";
+import { BiCaretLeft, BiCaretRight } from "react-icons/bi";
+import { BsHeadphones } from "react-icons/bs";
+import { Timer } from "@/components";
+import Image from "next/image";
+import { useTts } from "tts-react";
+import type { TTSHookProps } from "tts-react";
+import { learningData } from "./learningData";
+import router from "next/router";
 
 export default function Test() {
   const [show, setShow] = useState<boolean>(false);
   const [idx, setIdx] = useState<number>(0);
-
-  const array = [
-    { word: "Mad", mean: "미친, 정신이상인" },
-    { word: "Upset", mean: "화난, 속상한" },
-    { word: "Crazy", mean: "미친, 정신 나간" },
-  ];
+  const [finalCount, setFinalCount] = useState<string>();
 
   function showMeanHandler() {
     setShow(!show);
-    console.log("클릭");
-    console.log(show);
   }
+
+  const CustomTTSComponent = ({ children }: TTSHookProps) => {
+    const selectedVoice = speechSynthesis
+      .getVoices()
+      .filter((r) => r.voiceURI === "Google US English");
+    const { ttsChildren, state, play, stop, pause } = useTts({
+      children,
+      voice: selectedVoice[0],
+    });
+
+    const handlePlay = (e: React.MouseEvent<HTMLOrSVGElement>) => {
+      e.stopPropagation();
+      play();
+    };
+
+    return (
+      <>
+        <BsHeadphones onClick={handlePlay} />
+      </>
+    );
+  };
 
   function indexLeftHandler() {
     setIdx((prevIdx) => (prevIdx - 1 < 0 ? 0 : prevIdx - 1));
@@ -23,20 +47,30 @@ export default function Test() {
 
   function indexRightHandler() {
     setIdx((prevIdx) =>
-      prevIdx + 1 > array.length - 1 ? array.length - 1 : prevIdx + 1
+      prevIdx + 1 > learningData.length - 1
+        ? learningData.length - 1
+        : prevIdx + 1
     );
     setShow(false);
+    if (idx === learningData.length - 1) {
+      alert(`테스트가 끝났습니다. ${finalCount}`);
+      window.location.href = "/voca-list";
+    }
   }
+
   return (
     <Container>
       <Box>
         <Title>
-          <FiChevronLeft style={{ width: "35px", height: "35px" }} />
+          <FiChevronLeft
+            style={{ width: "35px", height: "35px" }}
+            onClick={() => router.push(`/voca-list`)}
+          />
           <h1>Part 1</h1>
         </Title>
         <hr />
         <Section>
-          <Timer />
+          <Timer setFinalCount={setFinalCount} />
           <ImgWrapper>
             <Image
               alt="사진"
@@ -50,9 +84,9 @@ export default function Test() {
               src={`https://cdn.discordapp.com/attachments/1092315426643529748/1092362861810044979/note.png`}
             ></Image>
             <Voca>
-              <h1>{array[idx].word}</h1>
+              <h1>{learningData[idx].word}</h1>
               <Mean style={show ? { display: "block" } : { display: "none" }}>
-                {array[idx].mean}
+                {learningData[idx].mean}
               </Mean>
             </Voca>
           </ImgWrapper>
@@ -62,7 +96,9 @@ export default function Test() {
                 <BiCaretLeft onClick={indexLeftHandler} />
               </Icon>
               <Icon>
-                <BsHeadphones />
+                <CustomTTSComponent>
+                  <h1>{learningData[idx].word}</h1>
+                </CustomTTSComponent>
               </Icon>
               <Icon>
                 <BiCaretRight onClick={indexRightHandler} />
