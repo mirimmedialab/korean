@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { Datepicker, DatepickerEvent } from '@meinefinsternis/react-horizontal-date-picker';
 import { enUS } from 'date-fns/locale';
 import Image from 'next/image';
-import LogoMirim from 'public/logo.png';
 import Card from '@/components/Main/Card';
 import dayjs from 'dayjs';
 import { Loading } from '@/components/Loading';
@@ -42,12 +41,12 @@ export function Main() {
 
         <Profile>
           <Image
-            src={LogoMirim}
+            src={'https://cdn.discordapp.com/attachments/1075588531457642598/1093041879785951292/github_logo.png'}
             alt='profile'
-            width={'60'}
-            height={'60'}
-            style={{ borderRadius: '50%', objectFit: 'cover' }}
-          ></Image>{' '}
+            width={'30'}
+            height={'30'}
+            style={{ borderRadius: '50%', objectFit: 'cover', marginRight: '10px' }}
+          ></Image>
           <Nickname>미림미디어랩</Nickname>
         </Profile>
         <Datepicker onChange={handleChange} locale={enUS} startValue={dayjs().toDate()} endValue={null} />
