@@ -10,6 +10,17 @@ export default function LearningList() {
   const handleBack = () => {
     router.replace("/voca-list");
   };
+
+  /*
+    category	여행 TRAVEL	
+    number	50
+  */
+  const category = localStorage.getItem("category");
+  const number = localStorage.getItem("number");
+
+  learningData[0];
+  console.log(category, number); // "여행 TRABLE", "50"  -> 둘 다 스트링으로 들어옴
+
   return (
     <LearningListContainer>
       <LearningListHeader>
