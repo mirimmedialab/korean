@@ -18,10 +18,14 @@ export default function Test() {
   let [idx, setIdx] = useState<number>(0);
   const [finalCount, setFinalCount] = useState<string>();
   const [answerCount, setAnswerCount] = useState<number>(0);
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState<boolean>(false);
 
-  let category: string | null = localStorage.getItem("category");
-  let num: number = localStorage.getItem("number");
+  let category: string | null = localStorage.getItem("category") as string;
+  let num: string | null = localStorage.getItem("number");
+
+  if (num !== null) {
+    var no = parseInt(num);
+  }
 
   switch (category) {
     case "일상적인 표현들 EVERYDAY EXPRESSIONS":
@@ -92,9 +96,9 @@ export default function Test() {
   // }
 
   function indexRightHandler() {
-    setIdx((prevIdx) => (prevIdx + 1 > num - 1 ? num - 1 : prevIdx + 1));
+    setIdx((prevIdx) => (prevIdx + 1 > no - 1 ? no - 1 : prevIdx + 1));
     setShow(false);
-    if (idx === num - 1) {
+    if (idx === no - 1) {
       alert(`테스트가 끝났습니다.
       소요시간 : ${finalCount}
       정답갯수 : ${answerCount}`);
@@ -111,8 +115,11 @@ export default function Test() {
     setAnswerCount(answerCount + 1);
     setIsChecked(!isChecked);
   }
-  console.log(learningData[0][category][0].word);
-  console.log(category);
+
+  // const { word, mean } = learningData.[category]?.[idx];
+  // const { word, mean } = learningData.[category]?.[idx];
+
+  console.log(learningData?.[category]?.[idx]);
 
   return (
     <Container>
