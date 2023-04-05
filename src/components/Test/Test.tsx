@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
-import { FiChevronLeft } from "react-icons/fi";
 import { BiCaretLeft, BiCaretRight } from "react-icons/bi";
 import { BsHeadphones } from "react-icons/bs";
 // import { Timer } from "@/components";
@@ -12,20 +11,42 @@ import { learningData } from "./learningData";
 import router from "next/router";
 import { IoIosArrowBack } from "react-icons/io";
 
+export const category = "category";
+
 export default function Test() {
   const [show, setShow] = useState<boolean>(false);
-  const [idx, setIdx] = useState<number>(0);
+  let [idx, setIdx] = useState<number>(0);
   const [finalCount, setFinalCount] = useState<string>();
   const [answerCount, setAnswerCount] = useState<number>(0);
   const [isChecked, setIsChecked] = useState(false);
 
+  let category: string | null = localStorage.getItem("category");
+  let num: number = localStorage.getItem("number");
+
+  switch (category) {
+    case "일상적인 표현들 EVERYDAY EXPRESSIONS":
+      category = "everydayExpressions";
+      break;
+    case "인사 GREETING":
+      category = "greeting";
+      break;
+    case "여행 TRAVEL":
+      category = "travel";
+      break;
+    case "숫자와 돈 NUMBER AND MONEY":
+      category = "numberAndMoney";
+      break;
+    case "위치 LOCATION":
+      category = "location";
+      break;
+    case "시간과 날짜 TIME AND DATE":
+      category = "timeAndDate";
+      break;
+  }
+
   function showMeanHandler() {
     setShow(!show);
   }
-
-  // function handleCheckboxChange() {
-  //   setIsChecked(!isChecked);
-  // }
 
   const CustomTTSComponent = ({ children }: TTSHookProps) => {
     const selectedVoice = speechSynthesis
@@ -54,14 +75,26 @@ export default function Test() {
     setIsChecked(false);
   }
 
+  // function indexRightHandler() {
+  //   setIdx((prevIdx) =>
+  //     prevIdx + 1 > learningData[0][category].length - 1
+  //       ? learningData[0][category].length - 1
+  //       : prevIdx + 1
+  //   );
+  //   setShow(false);
+  //   if (idx === learningData[0][category].length - 1) {
+  //     alert(`테스트가 끝났습니다.
+  //     소요시간 : ${finalCount}
+  //     정답갯수 : ${answerCount}`);
+  //     window.location.href = "/voca-list";
+  //   }
+  //   setIsChecked(false);
+  // }
+
   function indexRightHandler() {
-    setIdx((prevIdx) =>
-      prevIdx + 1 > learningData.length - 1
-        ? learningData.length - 1
-        : prevIdx + 1
-    );
+    setIdx((prevIdx) => (prevIdx + 1 > num - 1 ? num - 1 : prevIdx + 1));
     setShow(false);
-    if (idx === learningData.length - 1) {
+    if (idx === num - 1) {
       alert(`테스트가 끝났습니다.
       소요시간 : ${finalCount}
       정답갯수 : ${answerCount}`);
@@ -69,6 +102,7 @@ export default function Test() {
     }
     setIsChecked(false);
   }
+
   function handleBack() {
     router.push(`/voca-list`);
   }
@@ -77,14 +111,20 @@ export default function Test() {
     setAnswerCount(answerCount + 1);
     setIsChecked(!isChecked);
   }
-  console.log(answerCount);
+  console.log(learningData[0][category][0].word);
+  console.log(category);
 
   return (
     <Container>
       <Box>
         <Title>
           <IoIosArrowBack
-            style={{ fontSize: "24px", display: "flex", alignItems: "center", cursor:'pointer' }}
+            style={{
+              fontSize: "24px",
+              display: "flex",
+              alignItems: "center",
+              cursor: "pointer",
+            }}
             onClick={handleBack}
           />
           <LearningListHeaderTypo>Part 1</LearningListHeaderTypo>
@@ -104,9 +144,9 @@ export default function Test() {
               src={`https://cdn.discordapp.com/attachments/1092315426643529748/1092362861810044979/note.png`}
             ></Image>
             <Voca>
-              {/* <h1>{learningData[idx].localStorage.}</h1> */}
+              <h1>{learningData[0][category][idx].word}</h1>
               <Mean style={show ? { display: "flex" } : { display: "none" }}>
-                {/* {learningData[idx].mean} */}
+                {learningData[0][category][idx].mean}
                 <br />
               </Mean>
             </Voca>{" "}
@@ -122,15 +162,21 @@ export default function Test() {
           <Controller>
             <Wrapper>
               <Icon>
-                <BiCaretLeft style={{cursor:'pointer'}} onClick={indexLeftHandler} />
+                <BiCaretLeft
+                  style={{ cursor: "pointer" }}
+                  onClick={indexLeftHandler}
+                />
               </Icon>
               <Icon>
                 <CustomTTSComponent>
-                  {/* <h1>{learningData[idx].word}</h1> */}
+                  <h1>{learningData[0][category][idx].word}</h1>
                 </CustomTTSComponent>
               </Icon>
               <Icon>
-                <BiCaretRight style={{cursor:'pointer'}} onClick={indexRightHandler} />
+                <BiCaretRight
+                  style={{ cursor: "pointer" }}
+                  onClick={indexRightHandler}
+                />
               </Icon>
             </Wrapper>
 
