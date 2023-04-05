@@ -41,6 +41,7 @@ export default function LearningList() {
       category = "timeAndDate";
       break;
   }
+  // @ts-ignore
   const data = learningData[0][category];
 
   return (
@@ -50,7 +51,7 @@ export default function LearningList() {
         <LearningListHeaderTypo>Part 1</LearningListHeaderTypo>
       </LearningListHeader>
       <LearningListBody>
-        {data.slice(0, num).map((r) => (
+        {data.slice(0, num).map((r : any) => (
           <LearningCard
             key={r.seq}
             seq={r.seq}

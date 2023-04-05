@@ -116,11 +116,7 @@ export default function Test() {
     setIsChecked(!isChecked);
   }
 
-  // const { word, mean } = learningData.[category]?.[idx];
-  // const { word, mean } = learningData.[category]?.[idx];
-
-  console.log(learningData?.[category]?.[idx]);
-
+  // @ts-ignore
   return (
     <Container>
       <Box>
@@ -151,8 +147,10 @@ export default function Test() {
               src={`https://cdn.discordapp.com/attachments/1092315426643529748/1092362861810044979/note.png`}
             ></Image>
             <Voca>
+              {/*@ts-ignore*/}
               <h1>{learningData[0][category][idx].word}</h1>
               <Mean style={show ? { display: "flex" } : { display: "none" }}>
+                {/*@ts-ignore*/}
                 {learningData[0][category][idx].mean}
                 <br />
               </Mean>
@@ -176,6 +174,7 @@ export default function Test() {
               </Icon>
               <Icon>
                 <CustomTTSComponent>
+                  {/*@ts-ignore*/}
                   <h1>{learningData[0][category][idx].word}</h1>
                 </CustomTTSComponent>
               </Icon>
