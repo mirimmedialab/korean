@@ -1,7 +1,10 @@
+import React from "react";
 import styled from "@emotion/styled";
 import { IoIosArrowBack } from "react-icons/io";
-import { learningData } from "@/components/Learning/data";
-import { LearningCard } from "@/components/Learning/LearningCard";
+// import { learningData } from "@/components/Learning/data";
+import { learningData } from "../Learning/data";
+// import { LearningCard } from "@/components/Learning/LearningCard";
+import { LearningCard } from "./LearningCard";
 import { useRouter } from "next/router";
 
 export default function LearningList() {
@@ -11,31 +14,35 @@ export default function LearningList() {
     router.replace("/voca-list");
   };
 
-  /*
-    category	여행 TRAVEL	
-    number	50
-  */
-  const category = localStorage.getItem("category");
-  const number = localStorage.getItem("number");
+  let category: string | null = localStorage.getItem("category") as string;
+  let num: string | null = localStorage.getItem("number");
 
-  console.log(category, number); // "여행 TRABLE", "50"  -> 둘 다 스트링으로 들어옴
-  console.log(learningData[0]);
-  
-  const firstData = learningData[0].everydayExpressions;
-
-  const filteredData = [
-    { id: 1, category: "everydayExpressions" },
-    { id: 2, category: "greeting" },
-    { id: 3, category: "location" },
-    { id: 4, category: "numberAndMoney" },
-    { id: 5, category: "timeAndDate" },
-    { id: 6, category: "travel" },
-  ];
-  const key = "category";
-  // const data1 = .;
-  // learningData[0].filter(el => el[key] === category);
-    return;
+  if (num !== null) {
+    var no = parseInt(num);
   }
+
+  switch (category) {
+    case "일상적인 표현들 EVERYDAY EXPRESSIONS":
+      category = "everydayExpressions";
+      break;
+    case "인사 GREETING":
+      category = "greeting";
+      break;
+    case "여행 TRAVEL":
+      category = "travel";
+      break;
+    case "숫자와 돈 NUMBER AND MONEY":
+      category = "numberAndMoney";
+      break;
+    case "위치 LOCATION":
+      category = "location";
+      break;
+    case "시간과 날짜 TIME AND DATE":
+      category = "timeAndDate";
+      break;
+  }
+  const data = learningData[0][category];
+
   return (
     <LearningListContainer>
       <LearningListHeader>
@@ -43,7 +50,7 @@ export default function LearningList() {
         <LearningListHeaderTypo>Part 1</LearningListHeaderTypo>
       </LearningListHeader>
       <LearningListBody>
-        {firstData.map((r) => (
+        {data.slice(0, num).map((r) => (
           <LearningCard
             key={r.seq}
             seq={r.seq}
@@ -86,14 +93,3 @@ const LearningListBody = styled.div`
   padding: 20px;
   /* margin-right: 10px; */
 `;
-
-
-/*
-*
-everydayExpressions
-greeting
-location
-numberAndMoney
-timeAndDate
-travel
-*/

@@ -471,6 +471,7 @@ export const learningData = [
         audio: "",
       },
     ],
+
     greeting: [
       {
         seq: 1,
@@ -923,6 +924,7 @@ export const learningData = [
         audio: "",
       },
     ],
+
     travel: [
       {
         seq: 1,
@@ -1375,6 +1377,7 @@ export const learningData = [
         audio: "",
       },
     ],
+
     numberAndMoney: [
       {
         seq: 1,
@@ -1827,6 +1830,7 @@ export const learningData = [
         audio: "",
       },
     ],
+
     location: [
       {
         seq: 1,
@@ -2279,6 +2283,7 @@ export const learningData = [
         audio: "",
       },
     ],
+
     timeAndDate: [
       {
         seq: 1,
