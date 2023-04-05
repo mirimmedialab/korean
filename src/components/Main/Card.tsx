@@ -87,9 +87,6 @@ export default function MediaCard() {
             <HiButton variant='contained' color='primary' onClick={saveWordNum}>
               50
             </HiButton>
-            <HiButton variant='contained' color='primary' onClick={saveWordNum}>
-              100
-            </HiButton>
             <HiButton variant='contained' color='error' onClick={() => setShowNumModal(false)}>
               닫기
             </HiButton>
