@@ -18,9 +18,24 @@ export default function LearningList() {
   const category = localStorage.getItem("category");
   const number = localStorage.getItem("number");
 
-  learningData[0];
   console.log(category, number); // "여행 TRABLE", "50"  -> 둘 다 스트링으로 들어옴
+  console.log(learningData[0]);
+  
+  const firstData = learningData[0].everydayExpressions;
 
+  const filteredData = [
+    { id: 1, category: "everydayExpressions" },
+    { id: 2, category: "greeting" },
+    { id: 3, category: "location" },
+    { id: 4, category: "numberAndMoney" },
+    { id: 5, category: "timeAndDate" },
+    { id: 6, category: "travel" },
+  ];
+  const key = "category";
+  // const data1 = .;
+  // learningData[0].filter(el => el[key] === category);
+    return;
+  }
   return (
     <LearningListContainer>
       <LearningListHeader>
@@ -28,7 +43,7 @@ export default function LearningList() {
         <LearningListHeaderTypo>Part 1</LearningListHeaderTypo>
       </LearningListHeader>
       <LearningListBody>
-        {learningData.map((r) => (
+        {firstData.map((r) => (
           <LearningCard
             key={r.seq}
             seq={r.seq}
@@ -71,3 +86,14 @@ const LearningListBody = styled.div`
   padding: 20px;
   /* margin-right: 10px; */
 `;
+
+
+/*
+*
+everydayExpressions
+greeting
+location
+numberAndMoney
+timeAndDate
+travel
+*/
