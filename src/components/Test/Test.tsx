@@ -67,6 +67,7 @@ export default function Test() {
     const { ttsChildren, state, play, stop, pause } = useTts({
       children,
       voice: selectedVoice[0],
+      rate: 0.8
     });
 
     const handlePlay = (e: React.MouseEvent<HTMLOrSVGElement>) => {
