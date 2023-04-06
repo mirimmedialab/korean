@@ -10,6 +10,7 @@ import type { TTSHookProps } from "tts-react";
 import { learningData } from "./learningData";
 import router from "next/router";
 import { IoIosArrowBack } from "react-icons/io";
+import {data5, data6} from "@/components/Learning/koreanData";
 
 export const category = "category";
 
@@ -22,29 +23,36 @@ export default function Test() {
 
   let category: string | null = localStorage.getItem("category") as string;
   let num: string | null = localStorage.getItem("number");
+  let level = localStorage.getItem('level');
+
+  let data = [];
+
+  if(level === '5'){
+    //@ts-ignore
+    data = data5
+  }
+  else{
+    //@ts-ignore
+    data = data6
+  }
+
 
   if (num !== null) {
     var no = parseInt(num);
   }
 
   switch (category) {
-    case "일상적인 표현들 EVERYDAY EXPRESSIONS":
-      category = "everydayExpressions";
+    case "명사 noun":
+      category = "noun";
       break;
-    case "인사 GREETING":
-      category = "greeting";
+    case "동사 verb":
+      category = "verb";
       break;
-    case "여행 TRAVEL":
-      category = "travel";
+    case "형용사 adjective":
+      category = "adjective";
       break;
-    case "숫자와 돈 NUMBER AND MONEY":
-      category = "numberAndMoney";
-      break;
-    case "위치 LOCATION":
-      category = "location";
-      break;
-    case "시간과 날짜 TIME AND DATE":
-      category = "timeAndDate";
+    case "부사 adverb":
+      category = "adverb";
       break;
   }
 
@@ -55,7 +63,7 @@ export default function Test() {
   const CustomTTSComponent = ({ children }: TTSHookProps) => {
     const selectedVoice = speechSynthesis
       .getVoices()
-      .filter((r) => r.voiceURI === "Google US English");
+      .filter((r) => r.voiceURI === "유나");
     const { ttsChildren, state, play, stop, pause } = useTts({
       children,
       voice: selectedVoice[0],
@@ -130,7 +138,7 @@ export default function Test() {
             }}
             onClick={handleBack}
           />
-          <LearningListHeaderTypo>Part 1</LearningListHeaderTypo>
+          <LearningListHeaderTypo>첫 단원</LearningListHeaderTypo>
         </Title>
         <Section>
           <Timer setFinalCount={setFinalCount} />
@@ -148,10 +156,10 @@ export default function Test() {
             ></Image>
             <Voca>
               {/*@ts-ignore*/}
-              <h1>{learningData[0][category][idx].word}</h1>
+              <h1>{data[0][category][idx].word}</h1>
               <Mean style={show ? { display: "flex" } : { display: "none" }}>
                 {/*@ts-ignore*/}
-                {learningData[0][category][idx].mean}
+                {data[0][category][idx].mean}
                 <br />
               </Mean>
             </Voca>{" "}
@@ -175,7 +183,7 @@ export default function Test() {
               <Icon>
                 <CustomTTSComponent>
                   {/*@ts-ignore*/}
-                  <h1>{learningData[0][category][idx].word}</h1>
+                  <h1>{data[0][category][idx].word}</h1>
                 </CustomTTSComponent>
               </Icon>
               <Icon>

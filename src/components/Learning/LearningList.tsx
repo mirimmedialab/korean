@@ -6,6 +6,7 @@ import { learningData } from "../Learning/data";
 // import { LearningCard } from "@/components/Learning/LearningCard";
 import { LearningCard } from "./LearningCard";
 import { useRouter } from "next/router";
+import {data5, data6} from "@/components/Learning/koreanData";
 
 export default function LearningList() {
   const router = useRouter();
@@ -16,39 +17,42 @@ export default function LearningList() {
 
   let category: string | null = localStorage.getItem("category") as string;
   let num: string | null = localStorage.getItem("number");
+  let level = localStorage.getItem('level')
 
   if (num !== null) {
     var no = parseInt(num);
   }
 
   switch (category) {
-    case "일상적인 표현들 EVERYDAY EXPRESSIONS":
-      category = "everydayExpressions";
+    case "명사 noun":
+      category = "noun";
       break;
-    case "인사 GREETING":
-      category = "greeting";
+    case "동사 verb":
+      category = "verb";
       break;
-    case "여행 TRAVEL":
-      category = "travel";
+    case "형용사 adjective":
+      category = "adjective";
       break;
-    case "숫자와 돈 NUMBER AND MONEY":
-      category = "numberAndMoney";
-      break;
-    case "위치 LOCATION":
-      category = "location";
-      break;
-    case "시간과 날짜 TIME AND DATE":
-      category = "timeAndDate";
+    case "부사 adverb":
+      category = "adverb";
       break;
   }
-  // @ts-ignore
-  const data = learningData[0][category];
+
+  let data =[];
+  if(level === '5'){
+    // @ts-ignore
+    data= data5[0][category];
+  }
+  else{
+    // @ts-ignore
+    data = data6[0][category]
+  }
 
   return (
     <LearningListContainer>
       <LearningListHeader>
         <IoIosArrowBack style={{ fontSize: "24px", display: "flex", alignItems: "center" }} onClick={handleBack} />
-        <LearningListHeaderTypo>Part 1</LearningListHeaderTypo>
+        <LearningListHeaderTypo>첫 단원</LearningListHeaderTypo>
       </LearningListHeader>
       <LearningListBody>
         {data.slice(0, num).map((r : any) => (

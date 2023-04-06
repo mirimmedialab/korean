@@ -32,10 +32,11 @@ export function LearningCard({ seq, isLearning, isFavorite, word, mean2, mean, a
     // }
   };
   const CustomTTSComponent = ({ children }: TTSHookProps) => {
-    const selectedVoice = speechSynthesis.getVoices().filter((r) => r.voiceURI === "Google US English");
+    const selectedVoice = speechSynthesis.getVoices().filter((r) => r.voiceURI === "유나");
     const { ttsChildren, state, play, stop, pause } = useTts({
       children,
       voice: selectedVoice[0],
+      rate:0.8
     });
     const handlePlay = (e: React.MouseEvent<HTMLOrSVGElement>) => {
       e.stopPropagation();

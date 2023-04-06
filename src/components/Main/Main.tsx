@@ -36,7 +36,7 @@ export function Main() {
     <MainContainer>
       <Box>
         <Header>
-          <Logo>나만의 영어 단어장</Logo>
+          <Logo>나만의 한국어 단어장</Logo>
         </Header>
 
         <Profile>
@@ -50,7 +50,8 @@ export function Main() {
           <Nickname>미림미디어랩</Nickname>
         </Profile>
         <Datepicker onChange={handleChange} locale={enUS} startValue={dayjs().toDate()} endValue={null} />
-        <Card />
+        <Card level={'5'} />
+        <Card  level={'6'} />
       </Box>
       {open && (
         <SplashWapper>

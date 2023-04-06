@@ -30,7 +30,7 @@ export default function Page02() {
           {/*  오늘의 영단어*/}
           {/*</Typography>*/}
           <LearningListHeaderTypo>
-            영어 단어 리스트
+            한국어 단어 리스트
           </LearningListHeaderTypo>
         </LearningListHeader>
         <Page02Container>
@@ -40,7 +40,7 @@ export default function Page02() {
               <Typography sx={{fontSize: '15px', lineHeight: '25px', ml: '5px'}}>학습완료</Typography>
             </ListStatusBox>
             <ListTitleBox>
-              <Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px', width: '91%'}}>Part 1</Typography>
+              <Typography sx={{fontSize: '25px', lineHeight: '40px', ml: '5px', width: '91%'}}>첫 단원</Typography>
               <FiChevronRight style={{marginTop: '6px', fontSize: '1.7rem', fontWeight: '800', justifyContent:'flex-end'}}/>
             </ListTitleBox>
             <ListProgressWrap sx={{mt: '-5px'}}>

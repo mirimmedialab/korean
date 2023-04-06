@@ -12,7 +12,7 @@ export const Loading = () => {
                     height={360}
                 />
         </ImageWapper>
-      <LoadingTitle>나만의 영어 단어장 로딩중 ...</LoadingTitle>
+      <LoadingTitle>나만의 한국어 단어장 로딩중 ...</LoadingTitle>
     </LoadingContainor>
   );
 };

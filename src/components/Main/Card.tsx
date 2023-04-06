@@ -9,14 +9,25 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-export default function MediaCard() {
+
+interface Props {
+  level?:string
+}
+
+export default function MediaCard({level}:Props) {
   const [showModal, setShowModal] = React.useState(false);
   const [showNumModal, setShowNumModal] = React.useState(false);
 
   const router = useRouter();
+
+  const handleOpenModal = () => {
+    setShowModal(true)
+    if(!level) return;
+    localStorage.setItem('level',level)
+  }
   const saveCategory = (e: React.MouseEvent<HTMLButtonElement>) => {
     const targetElement = e.target as HTMLElement;
-    const innerText = targetElement.innerText;
+    const innerText = targetElement.innerText.toLowerCase();
     localStorage.setItem('category', innerText);
     setShowNumModal(true);
     setShowModal(false);
@@ -30,15 +41,15 @@ export default function MediaCard() {
   };
   return (
     <Wrapper>
-      <Box onClick={() => setShowModal(true)}>
+      <Box onClick={handleOpenModal}>
         <Card sx={{ maxWidth: 280 }}>
           <CardMedia sx={{ height: 140 }} image='/words.jpeg' title='words' />
           <CardContent>
             <Typography gutterBottom variant='h5' component='div'>
-              영어단어
+              한국어단어 {level}급
             </Typography>
             <Typography variant='body2' color='text.secondary'>
-              영어단어를 효율적으로 학습할 수 있는 방법이 바로 여기 있습니다!
+              한국어단어를 효율적으로 학습할 수 있는 방법이 바로 여기 있습니다!
             </Typography>
           </CardContent>
           <CardActions>
@@ -51,22 +62,16 @@ export default function MediaCard() {
           <Box className='modal-content'>
             <Typography style={{ fontSize: '20px' }}>카테고리를 선택해주세요</Typography>
             <HiButton variant='contained' color='primary' onClick={saveCategory}>
-              일상적인 표현들 Everyday expressions
+              명사 noun
             </HiButton>
             <HiButton variant='contained' color='primary' onClick={saveCategory}>
-              인사 Greeting
+              동사 verb
             </HiButton>
             <HiButton variant='contained' color='primary' onClick={saveCategory}>
-              여행 Travel
+              형용사 adjective
             </HiButton>
             <HiButton variant='contained' color='primary' onClick={saveCategory}>
-              숫자와 돈 Number and money
-            </HiButton>
-            <HiButton variant='contained' color='primary' onClick={saveCategory}>
-              위치 Location
-            </HiButton>
-            <HiButton variant='contained' color='primary' onClick={saveCategory}>
-              시간과 날짜 Time and date
+              부사 adverb
             </HiButton>
             <HiButton variant='contained' color='error' onClick={() => setShowModal(false)}>
               닫기
