@@ -128,7 +128,7 @@ const Modalchang = styled(Box)`
 
   .modal-content {
     width: 300px;
-    height: 380px;
+    height: 300px;
     border-radius: 10px;
     background-color: white;
     padding: 20px;
