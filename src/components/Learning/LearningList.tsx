@@ -15,7 +15,7 @@ export default function LearningList() {
     router.replace("/voca-list");
   };
 
-  let category: string | null = localStorage.getItem("category") as string;
+  let category: string | null = (localStorage.getItem("category") as string).trim();
   let num: string | null = localStorage.getItem("number");
   let level = localStorage.getItem('level')
 
@@ -48,6 +48,7 @@ export default function LearningList() {
     data = data6[0][category]
   }
 
+
   return (
     <LearningListContainer>
       <LearningListHeader>
@@ -55,7 +56,7 @@ export default function LearningList() {
         <LearningListHeaderTypo>첫 단원</LearningListHeaderTypo>
       </LearningListHeader>
       <LearningListBody>
-        {data.slice(0, num).map((r : any) => (
+        {data && data.slice(0, num).map((r : any) => (
           <LearningCard
             key={r.seq}
             seq={r.seq}

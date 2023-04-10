@@ -21,7 +21,7 @@ export default function Test() {
   const [answerCount, setAnswerCount] = useState<number>(0);
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
-  let category: string | null = localStorage.getItem("category") as string;
+  let category: string | null = (localStorage.getItem("category") as string).trim();
   let num: string | null = localStorage.getItem("number");
   let level = localStorage.getItem('level');
 
